@@ -56,7 +56,7 @@ public class Team {
             if (t1.wins == t2.wins) {      // in case of tiebreaker compare by points for
                 return pointsComparator.compare(t1, t2);
             }
-            return t1.wins - t2.wins;
+            return t2.wins - t1.wins;
         }
     };
 
