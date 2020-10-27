@@ -46,7 +46,7 @@ public class Main {
 
             Collections.sort(teams, Team.pointsComparator);
 
-            i = 0;
+            i = 1;
             for (Team t : teams) {
                 System.out.println((i++) + ") " + t.getName() + ": " + t.getRecord() +
                         " (" + round(t.getPointsFor(), 2) + ")");
