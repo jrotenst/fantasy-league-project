@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Comparator;
+
 import static java.lang.Character.*;
 
 public class Team {
@@ -46,5 +48,30 @@ public class Team {
         }
         pointsFor += score;
     }
+
+    // comparator for sorting teams by record
+    public static Comparator<Team> recordComparator = new Comparator<Team>() {
+        @Override
+        public int compare(Team t1, Team t2) {
+            if (t1.wins == t2.wins) {      // in case of tiebreaker compare by points for
+                return pointsComparator.compare(t1, t2);
+            }
+            return t1.wins - t2.wins;
+        }
+    };
+
+    // comparator for sorting teams by points for
+    public static Comparator<Team> pointsComparator = new Comparator<Team>() {
+        @Override
+        public int compare(Team t1, Team t2) {
+            if (t1.pointsFor > t2.pointsFor) {
+                return -1;
+            }
+            if (t1.pointsFor < t2.pointsFor) {
+                return 1;
+            }
+            return 0;
+        }
+    };
 
 }

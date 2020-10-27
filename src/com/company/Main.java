@@ -1,34 +1,45 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        Map<String, Double> teams = new HashMap<String, Double>();
+        ArrayList<Team> teams = new ArrayList<Team>();
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 2; i++)
         {
-            String team;
-            double pf;
-            double score;
             System.out.println("Enter new team name:");
-            team = scanner.nextLine();
-            System.out.println("Enter teams Points For:");
-            pf = scanner.nextDouble();
-            System.out.println("Enter teams score for this week:");
-            score = scanner.nextDouble();
-            teams.put(team, pf + score);
+            String name = scanner.nextLine();
+            System.out.println("Enter Wins:");
+            int wins = scanner.nextInt();
+            System.out.println("Enter Losses:");
+            int losses = scanner.nextInt();
+            System.out.println("Enter Points For:");
+            double pf = scanner.nextDouble();
+            System.out.println("Enter matchup score:");
+            double score = scanner.nextDouble();
+            teams.add(new Team(name, wins, losses, pf+score));
             scanner.nextLine(); // flush
         }
 
-        for (Map.Entry<String, Double> team : teams.entrySet())
-        {
-            System.out.println(team.getKey() + ": " + team.getValue() + "\n");
+        System.out.println("\n\n***************LEAGUE STANDINGS***************\n\n");
+
+        Collections.sort(teams, Team.recordComparator); // sort by record
+
+        int i = 1;
+        for (Team t : teams) {
+            System.out.println((i++) + ") " + t.getName() + ": " + t.getRecord() + " (" + t.getPointsFor() + ")");
+        }
+
+        System.out.println("\n\n***************LEAGUE STANDINGS SORTED BY POINTS FOR***************\n\n");
+
+        Collections.sort(teams, Team.pointsComparator);
+
+        for (Team t : teams) {
+            System.out.println((i++) + ") " + t.getName() + ": " + t.getRecord() + " (" + t.getPointsFor() + ")");
         }
     }
 }
