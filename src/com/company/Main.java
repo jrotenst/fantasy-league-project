@@ -9,7 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Team> teams = new ArrayList<Team>();
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 10; i++)
         {
             System.out.println("Enter new team name:");
             String name = scanner.nextLine();
