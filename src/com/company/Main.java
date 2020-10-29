@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            File file = new File("C:\\Users\\yrote\\IdeaProjects\\MNFLeagueStandings\\src\\com\\company\\TeamData.txt");
+            File file = new File("C:\\Users\\yrote\\IdeaProjects\\fantasy-league-project\\src\\com\\company\\TeamData.txt");
             Scanner scanner = new Scanner(file);
 
             ArrayList<Team> teams = new ArrayList<Team>();
