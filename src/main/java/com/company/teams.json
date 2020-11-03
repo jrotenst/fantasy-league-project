@@ -1,0 +1,94 @@
+[
+  {
+    "team": {
+      "name": "Chaim",
+      "wins": "6",
+      "losses": "2",
+      "pointsFor": "982.58",
+      "score": "105.12"
+    }
+  },
+  {
+    "team": {
+      "name":"Chunon",
+      "wins":"5",
+      "losses":"3",
+      "pointsFor":"772.02",
+      "score":"70.52"
+    }
+  },
+  {
+    "team": {
+      "name":"Shlomo",
+      "wins":"5",
+      "losses":"3",
+      "pointsFor":"874.92",
+      "score":"100.9"
+    }
+  },
+  {
+    "team": {
+      "name":"Yossi",
+      "wins":"5",
+      "losses":"3",
+      "pointsFor":"784.68",
+      "score":"146.34"
+    }
+  },
+  {
+    "team": {
+      "name":"Zalman",
+      "wins":"4",
+      "losses":"4",
+      "pointsFor":"740.26",
+      "score":"106.44"
+    }
+  },
+  {
+    "team": {
+      "name":"Mendy",
+      "wins":"5",
+      "losses":"3",
+      "pointsFor":"827.52",
+      "score":"98.92"
+    }
+  },
+  {
+    "team": {
+      "name":"Shauly",
+      "wins":"3",
+      "losses":"5",
+      "pointsFor":"819.16",
+      "score":"121.06"
+    }
+  },
+  {
+    "team": {
+      "name":"Chezkie",
+      "wins":"2",
+      "losses":"6",
+      "pointsFor":"738.58",
+      "score":"77.88"
+    }
+  },
+  {
+    "team": {
+      "name":"Ashi",
+      "wins":"3",
+      "losses":"5",
+      "pointsFor":"751.74",
+      "score":"113.12"
+    }
+  },
+  {
+    "team": {
+      "name":"Sholem",
+      "wins":"2",
+      "losses":"6",
+      "pointsFor":"738.08",
+      "score":"93.64"
+    }
+  }
+]
+
+
