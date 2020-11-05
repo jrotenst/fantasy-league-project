@@ -3,11 +3,8 @@ package com.company;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -43,13 +40,7 @@ public class Main {
             header = "*".repeat(15) + "TEAMS SORTED BY POINTS FOR" + "*".repeat(15);
             displayStandings(teams, Team.pointsComparator, header);
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch (ParseException e) {
+        catch(Exception e) {
             e.printStackTrace();
         }
     }
