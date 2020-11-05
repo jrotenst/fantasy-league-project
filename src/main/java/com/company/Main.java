@@ -12,19 +12,20 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Main {
 
     public static void main(String[] args) {
+        ArrayList<Team> teams = new ArrayList<Team>();
 
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
-        ArrayList<Team> teams = new ArrayList<Team>();
-
         try
         {
-            FileReader reader = new FileReader("C:\\Users\\yrote\\IdeaProjects\\fantasy-league-project\\src\\main\\java\\com\\company\\teams.json");
+            String file = "C:\\Users\\yrote\\IdeaProjects\\fantasy-league-project\\src\\main\\java\\com\\company\\teams.json";
+            FileReader reader = new FileReader(file);
 
             //Read JSON file
             Object obj = jsonParser.parse(reader);
@@ -32,29 +33,15 @@ public class Main {
             JSONArray teamsList = (JSONArray) obj;
             System.out.println(teamsList);
 
-            //Iterate over employee array
+            //Iterate over teamList array and parse to objects
             teamsList.forEach(team -> teams.add(parseTeamObject((JSONObject) team)));
 
-            System.out.println("\n\n***************LEAGUE STANDINGS***************\n\n");
+            // display standard league standings
+            String header = "*".repeat(15) + "LEAGUE STANDINGS" + "*".repeat(15);
+            displayStandings(teams, Team.recordComparator, header);
 
-            Collections.sort(teams, Team.recordComparator); // sort by record
-
-            int i = 1;
-            for (Team t : teams) {
-                System.out.println((i++) + ") " + t.getName() + ": " + t.getRecord() +
-                        " (" + round(t.getPointsFor(), 2) + ")");
-            }
-
-            System.out.println("\n\n***************LEAGUE STANDINGS SORTED BY POINTS FOR***************\n\n");
-
-            Collections.sort(teams, Team.pointsComparator);
-
-            i = 1;
-            for (Team t : teams) {
-                System.out.println((i++) + ") " + t.getName() + ": " + t.getRecord() +
-                        " (" + round(t.getPointsFor(), 2) + ")");
-            }
-
+            header = "*".repeat(15) + "TEAMS SORTED BY POINTS FOR" + "*".repeat(15);
+            displayStandings(teams, Team.pointsComparator, header);
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -78,6 +65,21 @@ public class Main {
         double pf = Double.parseDouble((String) teamObject.get("pointsFor"));
         double score = Double.parseDouble((String) teamObject.get("score"));
         return new Team(name, wins, losses, pf+score);
+    }
+
+    public static void displayStandings(ArrayList<Team> teams, Comparator<Team> comparator, String header) {
+        System.out.println(header);
+
+        // sort teams
+        Collections.sort(teams, comparator); // sort by record
+
+        // display teams
+        int i = 1;
+        for (Team t : teams)
+        {
+            System.out.println((i++) + ") " + t.getName() + ": " + t.getRecord() +
+                    " (" + round(t.getPointsFor(), 2) + ")");
+        }
     }
 
     public static double round(double value, int places) {
