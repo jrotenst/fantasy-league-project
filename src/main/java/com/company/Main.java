@@ -59,7 +59,7 @@ public class Main {
     }
 
     public static void displayStandings(ArrayList<Team> teams, Comparator<Team> comparator, String header) {
-        System.out.println(header);
+        System.out.println("\n\n" + header + "\n");
 
         // sort teams
         Collections.sort(teams, comparator); // sort by record
