@@ -67,8 +67,9 @@ public class Main {
         int i = 1;
         for (Team t : teams)
         {
-            System.out.println((i++) + ") " + t.getName() + ": " + t.getRecord() +
-                    " (" + round(t.getPointsFor(), 2) + ")");
+           System.out.print((i++) + ") " + t.getName());
+           System.out.print(": " + t.getRecord() + " (");
+           System.out.println(round(t.getPointsFor(), 2) + ")");
         }
     }
 
