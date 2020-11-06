@@ -34,11 +34,10 @@ public class Main {
             teamsList.forEach(team -> teams.add(parseTeamObject((JSONObject) team)));
 
             // display standard league standings
-            String header = "*".repeat(15) + "LEAGUE STANDINGS" + "*".repeat(15);
-            displayStandings(teams, Team.recordComparator, header);
+            displayStandings(teams, Team.recordComparator, "LEAGUE STANDINGS");
 
-            header = "*".repeat(15) + "TEAMS SORTED BY POINTS FOR" + "*".repeat(15);
-            displayStandings(teams, Team.pointsComparator, header);
+            // display teams in order of pointsFor
+            displayStandings(teams, Team.pointsComparator, "TEAMS SORTED BY POINTS FOR");
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -59,7 +58,7 @@ public class Main {
     }
 
     public static void displayStandings(ArrayList<Team> teams, Comparator<Team> comparator, String header) {
-        System.out.println("\n\n" + header + "\n");
+        System.out.println("\n\n" + "*".repeat(15) + header + "*".repeat(15) + "\n");
 
         // sort teams
         Collections.sort(teams, comparator); // sort by record
