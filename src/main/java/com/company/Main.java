@@ -21,7 +21,8 @@ public class Main {
 
         try
         {
-            String file = "C:\\Users\\yrote\\IdeaProjects\\fantasy-league-project\\src\\main\\java\\com\\company\\teams.json";
+            String file = "C:\\Users\\yrote\\IdeaProjects\\fantasy-league-project" +
+                    "\\src\\main\\java\\com\\company\\teams.json";
             FileReader reader = new FileReader(file);
 
             //Read JSON file
