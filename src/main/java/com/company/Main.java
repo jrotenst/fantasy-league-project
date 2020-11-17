@@ -5,6 +5,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.Comparator;
 public class Main {
 
     public static void main(String[] args) {
+
         ArrayList<Team> teams = new ArrayList<Team>();
 
         //JSON parser object to parse read file
@@ -39,10 +42,37 @@ public class Main {
 
             // display teams in order of pointsFor
             displayStandings(teams, Team.pointsComparator, "TEAMS SORTED BY POINTS FOR");
+
+            updateJSONFile(file, teams);
         }
         catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static void updateJSONFile(String file, ArrayList<Team> teams) {
+        JSONArray teamsList = parseToJsonArray(teams);
+        String jString = teamsList.toJSONString();
+
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(jString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static JSONArray parseToJsonArray(ArrayList<Team> teams) {
+        JSONArray teamsList = new JSONArray();
+        for (Team t : teams) {
+            JSONObject jo = new JSONObject();
+            jo.put("name", t.getName());
+            jo.put("wins", t.getWins());
+            jo.put("losses", t.getLosses());
+            jo.put("pointsFor", round(t.getPointsFor(), 2));
+            jo.put("score", "");
+            teamsList.add(jo);
+        }
+        return teamsList;
     }
 
     public static Team parseTeamObject(JSONObject team) {
@@ -59,10 +89,11 @@ public class Main {
     }
 
     public static void displayStandings(ArrayList<Team> teams, Comparator<Team> comparator, String header) {
+
         System.out.println("\n\n" + "*".repeat(15) + header + "*".repeat(15) + "\n");
 
         // sort teams
-        Collections.sort(teams, comparator); // sort by record
+        Collections.sort(teams, comparator);
 
         // display teams
         int i = 1;
@@ -75,6 +106,7 @@ public class Main {
     }
 
     public static double round(double value, int places) {
+
         if (places < 0) throw new IllegalArgumentException();
 
         BigDecimal bd = BigDecimal.valueOf(value);
